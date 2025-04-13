@@ -15,5 +15,17 @@ module.exports = (app) => {
       res.status(409).json({ errorMessages: ['Value duplicated, already in the database'] })
     }
 
+    if (err.name === 'UnauthorizedError') {
+      return res.status(401).json({
+        message: "Unauthorized: invalid or expired token",
+        code: "invalid_token"
+      })
+    }
+
+    return res.status(500).json({
+      message: "Internal Server Error",
+      error: err.message || err
+    })
+
   });
 };
