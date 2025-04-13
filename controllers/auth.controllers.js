@@ -82,7 +82,7 @@ const login = (req, res, next) => {
                 res.json({ authToken: authToken });
             }
             else {
-                res.status(401).json({ message: "Unable to authenticate the user" });
+                res.status(401).json({ message: "Unable to authenticate the user: wrong password." });
             }
 
         })
