@@ -17,6 +17,7 @@ module.exports = (app) => {
 
     app.use(cors({
         origin: function (origin, callback) {
+            console.log("🌐 CORS origin:", origin);
             // Permitir peticiones sin origin (como las de curl o postman)
             if (!origin || allowedOrigins.includes(origin)) {
                 callback(null, true);
