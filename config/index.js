@@ -13,6 +13,7 @@ const allowedOrigins = [
 
 module.exports = (app) => {
   app.set("trust proxy", 1);
+  console.log('🌐 CORS allowed origins:', allowedOrigins);
   
 
     app.use(cors({
