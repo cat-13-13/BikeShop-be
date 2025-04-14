@@ -5,30 +5,14 @@ const cors = require("cors");
 
 const FRONTEND_URL = process.env.ORIGIN || "http://localhost:3000";
 
-const allowedOrigins = [
-  "https://markus-bikes-shop.vercel.app",
-  "http://localhost:3000",
-  "http://localhost:5173"
-];
-
 module.exports = (app) => {
   app.set("trust proxy", 1);
-  console.log('🌐 CORS allowed origins:', allowedOrigins);
+  console.log('🌐 CORS allowed origins:', FRONTEND_URL);
   
 
-    app.use(cors({
-        origin: function (origin, callback) {
-            console.log("🌐 CORS origin:", origin);
-            // Permitir peticiones sin origin (como las de curl o postman)
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                console.log("🔒 Bloqueado por CORS:", origin);
-                callback(new Error("Not allowed by CORS"));
-            }
-        },
-        credentials: true
-    }));
+    app.use(
+        cors()
+    );
 
 
     app.use(logger("dev"));
