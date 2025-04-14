@@ -9,7 +9,9 @@ module.exports = (app) => {
   app.set("trust proxy", 1);
 
     app.use(
-        cors()
+        cors({
+            origin: "*"
+        })
     );
 
     app.use(logger("dev"));
