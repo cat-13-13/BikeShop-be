@@ -35,7 +35,7 @@ const getOneUser = (req, res, next) => {
 const addToCart = (req, res, next) => {
 
     const { product_id, user_id } = req.params;
-    const { options, price } = req.body;
+    const { options, price, title } = req.body;
 
     User
         .findById(user_id)
@@ -47,7 +47,7 @@ const addToCart = (req, res, next) => {
             if (existingCartItem) {
                 existingCartItem.quantity = (existingCartItem.quantity || 1) + 1;
             } else {
-                user.cart.push({ product: product_id, options, price, quantity: 1 });
+                user.cart.push({ product: product_id, options, price, title, quantity: 1 });
             }
 
             return user.save();
@@ -122,6 +122,7 @@ const buyProducts = (req, res, next) => {
 
             const purchasedItems = user.cart.map(item => ({
                 product: item.product,
+                title: item.title, 
                 options: item.options,
                 price: item.price,
                 quantity: item.quantity,

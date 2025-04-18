@@ -27,6 +27,7 @@ const userSchema = new Schema(
 		purchasedProduct: [{
 			type: {
 				product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+				title: { type: String, required: true }, // Store product title
 				options: { type: Map, of: String }, // Store customizable options as key-value pairs
 				price: { type: Number, required: true }, // Store price as a number
 				quantity: { type: Number, default: 1 }, // Store quantity as a number
@@ -38,6 +39,7 @@ const userSchema = new Schema(
 		cart: [{
 			type: {
 				product: { type: Schema.Types.ObjectId, ref: 'Product', required: true },
+				title: { type: String, required: true }, // Store product title
 				options: { type: Map, of: String }, // Store customizable options as key-value pairs
 				price: { type: Number, required: true }, // Store price as a number
 				quantity: { type: Number, default: 1 } // Store quantity as a number
